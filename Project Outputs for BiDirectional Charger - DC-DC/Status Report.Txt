@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [BiDirectional Charger - DC-DC.PrjPcb]
+   Generated File[DC-DC PCB.TXT]
+   Generated File[DC-DC PCB.LDP]
+   Generated File[DC-DC PCB.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 21:20:53 On 02/06/2024
