@@ -1,0 +1,640 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">02/06/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">21:18:48</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc" class="file"><acronym title="D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc">D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">104</td></tr>
+</table>
+</td>
+</table><a name="IDY2CWSPJ2YE40I0IRUYENL4D4LEYLHZ53SHJMQLBINSHMUBQ5ZSKO"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2D5A35DMBVL3IKGCXDBKN2SSZNC3IMAPC0V5CJGR23D3GQVWGRAE">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDATNSTMMHQNKVBGUCKPEYHZXRLGC4J0WH3KAC0OFNIRADKBXOB5LF">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUZURCYE132XUBTL4OQRAV3JGYHRIWJSKXXCKAFGMXFHJBLACSRFB">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXE340RHGOEQAEXN1IXIO4RJKM0APDE31B2KTFIYVE3DXKBNMA1J">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY5IZCETMGVBWH53LOAGQCG1BMIV1B0FTMG334GLUVM0D221YMCYI">Width Constraint (Min=0.127mm) (Max=5mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDURZ12I4TATI3M42FVP5WYHYCSKAR4XYCGKETF5K1FIJJVPWPILE">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBJRPJOH53HKUPI3KTP5YJU4IUMA5FUZWLP2NUSSMRA4H2F4HTQL">Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0LCPXL1OJPQNND33ULF0YSAB2KL5XFMCZ43RJ3BPDAJMJCTHICZC">Hole To Hole Clearance (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDN5JJQR3EUNO0GH2ZF3ZFVGDALKB3LFKOAGA0VAPF1RN0HDT0DSRG">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2DKAGAUD5NCHKTB43IMLGL4OIFRMOK0HBHUKJ1OC04ZRH5YWXP2O">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">104</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSIOHNEQLCBQDPLJMQCHMTAGAID5JBRXHFKW5EAJWCVANW31RJ1NB">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNJJLCYY4MXTWBC1ZCM2MLECVSNPKA51K405E4KPMK4SGSMNEOTOM">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJIDLICKVN2ZROLJIJ4IDXFJDWCIFKRH2J4S3RRFES1VTDU3AOZSH">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">104</td>
+</tr>
+</table><br><a name="ID2DKAGAUD5NCHKTB43IMLGL4OIFRMOK0HBHUKJ1OC04ZRH5YWXP2O"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.104mil|Location2.X=1357.77mil|Location1.Y=2996.56mil|Location2.Y=3004.227mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.104mil|Location2.X=1357.77mil|Location1.Y=2996.56mil|Location2.Y=3004.227mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (34.29mm,76.21mm) on Top Overlay And Pad D1-1(34.29mm,75.565mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.111mil|Location2.X=1381.361mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.111mil|Location2.X=1381.361mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (35.75mm,124.968mm) on Bottom Overlay And Pad J2-4(35.75mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.111mil|Location2.X=1381.361mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.111mil|Location2.X=1381.361mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (35.75mm,127.508mm) on Bottom Overlay And Pad J2-3(35.75mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1470.111mil|Location2.X=1481.361mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1470.111mil|Location2.X=1481.361mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (38.29mm,124.968mm) on Bottom Overlay And Pad J2-2(38.29mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1470.111mil|Location2.X=1481.361mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1470.111mil|Location2.X=1481.361mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (38.29mm,127.508mm) on Bottom Overlay And Pad J2-1(38.29mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.973mil|Location2.X=1523.223mil|Location1.Y=4193.548mil|Location2.Y=4204.798mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.973mil|Location2.X=1523.223mil|Location1.Y=4193.548mil|Location2.Y=4204.798mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.22mm &lt; 0.254mm) Between Arc (38.801mm,106.299mm) on Top Overlay And Pad C2-2(37.31mm,107.569mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.22mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.591mil|Location2.X=1638.841mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.591mil|Location2.X=1638.841mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (42.29mm,124.968mm) on Bottom Overlay And Pad J3-4(42.29mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.591mil|Location2.X=1638.841mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1627.591mil|Location2.X=1638.841mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (42.29mm,127.508mm) on Bottom Overlay And Pad J3-3(42.29mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1727.591mil|Location2.X=1738.841mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1727.591mil|Location2.X=1738.841mil|Location1.Y=4912.455mil|Location2.Y=4923.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (44.83mm,124.968mm) on Bottom Overlay And Pad J3-2(44.83mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1727.591mil|Location2.X=1738.841mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1727.591mil|Location2.X=1738.841mil|Location1.Y=5012.455mil|Location2.Y=5023.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (44.83mm,127.508mm) on Bottom Overlay And Pad J3-1(44.83mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.374mil|Location2.X=1886.624mil|Location1.Y=4899.452mil|Location2.Y=4912.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.374mil|Location2.X=1886.624mil|Location1.Y=4899.452mil|Location2.Y=4912.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (48.514mm,124.968mm) on Bottom Overlay And Pad J1-4(48.514mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.374mil|Location2.X=1886.624mil|Location1.Y=4999.452mil|Location2.Y=5012.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.374mil|Location2.X=1886.624mil|Location1.Y=4999.452mil|Location2.Y=5012.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (48.514mm,127.508mm) on Bottom Overlay And Pad J1-3(48.514mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1975.374mil|Location2.X=1986.624mil|Location1.Y=4899.452mil|Location2.Y=4912.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1975.374mil|Location2.X=1986.624mil|Location1.Y=4899.452mil|Location2.Y=4912.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (51.054mm,124.968mm) on Bottom Overlay And Pad J1-2(51.054mm,124.968mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1975.374mil|Location2.X=1986.624mil|Location1.Y=4999.452mil|Location2.Y=5012.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1975.374mil|Location2.X=1986.624mil|Location1.Y=4999.452mil|Location2.Y=5012.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.254mm) Between Arc (51.054mm,127.508mm) on Bottom Overlay And Pad J1-1(51.054mm,127.508mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.104mil|Location2.X=2377.77mil|Location1.Y=2996.56mil|Location2.Y=3004.227mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.104mil|Location2.X=2377.77mil|Location1.Y=2996.56mil|Location2.Y=3004.227mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (60.198mm,76.21mm) on Top Overlay And Pad D2-1(60.198mm,75.565mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.126mil|Location2.X=4095.376mil|Location1.Y=2431.423mil|Location2.Y=2442.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.126mil|Location2.X=4095.376mil|Location1.Y=2431.423mil|Location2.Y=2442.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C11-1(104.648mm,62.276mm) on Top Layer And Track (103.758mm,60.341mm)(103.758mm,62.341mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4144.624mil|Location2.X=4155.874mil|Location1.Y=2431.423mil|Location2.Y=2442.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4144.624mil|Location2.X=4155.874mil|Location1.Y=2431.423mil|Location2.Y=2442.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C11-1(104.648mm,62.276mm) on Top Layer And Track (105.538mm,60.341mm)(105.538mm,62.341mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.126mil|Location2.X=4095.376mil|Location1.Y=2387.329mil|Location2.Y=2398.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.126mil|Location2.X=4095.376mil|Location1.Y=2387.329mil|Location2.Y=2398.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C11-2(104.648mm,60.406mm) on Top Layer And Track (103.758mm,60.341mm)(103.758mm,62.341mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4144.624mil|Location2.X=4155.874mil|Location1.Y=2387.329mil|Location2.Y=2398.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4144.624mil|Location2.X=4155.874mil|Location1.Y=2387.329mil|Location2.Y=2398.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C11-2(104.648mm,60.406mm) on Top Layer And Track (105.538mm,60.341mm)(105.538mm,62.341mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.765mil|Location2.X=1521.432mil|Location1.Y=4399.671mil|Location2.Y=4407.337mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.765mil|Location2.X=1521.432mil|Location1.Y=4399.671mil|Location2.Y=4407.337mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C1-2(37.31mm,112.649mm) on Top Layer And Track (38.547mm,106.299mm)(38.547mm,115.791mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3322.329mil|Location2.Y=3333.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3322.329mil|Location2.Y=3333.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C13-1(29.718mm,84.155mm) on Top Layer And Track (28.828mm,84.09mm)(28.828mm,86.09mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3322.329mil|Location2.Y=3333.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3322.329mil|Location2.Y=3333.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C13-1(29.718mm,84.155mm) on Top Layer And Track (30.608mm,84.09mm)(30.608mm,86.09mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3366.423mil|Location2.Y=3377.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3366.423mil|Location2.Y=3377.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C13-2(29.718mm,86.025mm) on Top Layer And Track (28.828mm,84.09mm)(28.828mm,86.09mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3366.423mil|Location2.Y=3377.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3366.423mil|Location2.Y=3377.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C13-2(29.718mm,86.025mm) on Top Layer And Track (30.608mm,84.09mm)(30.608mm,86.09mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3332.329mil|Location2.Y=3343.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3332.329mil|Location2.Y=3343.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C14-1(64.262mm,84.409mm) on Top Layer And Track (63.372mm,84.344mm)(63.372mm,86.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3332.329mil|Location2.Y=3343.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3332.329mil|Location2.Y=3343.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C14-1(64.262mm,84.409mm) on Top Layer And Track (65.152mm,84.344mm)(65.152mm,86.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3376.423mil|Location2.Y=3387.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3376.423mil|Location2.Y=3387.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C14-2(64.262mm,86.279mm) on Top Layer And Track (63.372mm,84.344mm)(63.372mm,86.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3376.423mil|Location2.Y=3387.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3376.423mil|Location2.Y=3387.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C14-2(64.262mm,86.279mm) on Top Layer And Track (65.152mm,84.344mm)(65.152mm,86.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.765mil|Location2.X=1521.432mil|Location1.Y=4199.671mil|Location2.Y=4207.337mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.765mil|Location2.X=1521.432mil|Location1.Y=4199.671mil|Location2.Y=4207.337mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad C2-2(37.31mm,107.569mm) on Top Layer And Track (38.547mm,106.299mm)(38.547mm,115.791mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.126mil|Location2.X=1780.376mil|Location1.Y=2041.423mil|Location2.Y=2052.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.126mil|Location2.X=1780.376mil|Location1.Y=2041.423mil|Location2.Y=2052.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C7-1(45.847mm,52.37mm) on Top Layer And Track (44.957mm,50.435mm)(44.957mm,52.435mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.624mil|Location2.X=1840.874mil|Location1.Y=2041.423mil|Location2.Y=2052.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.624mil|Location2.X=1840.874mil|Location1.Y=2041.423mil|Location2.Y=2052.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C7-1(45.847mm,52.37mm) on Top Layer And Track (46.737mm,50.435mm)(46.737mm,52.435mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.126mil|Location2.X=1780.376mil|Location1.Y=1997.329mil|Location2.Y=2008.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.126mil|Location2.X=1780.376mil|Location1.Y=1997.329mil|Location2.Y=2008.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C7-2(45.847mm,50.5mm) on Top Layer And Track (44.957mm,50.435mm)(44.957mm,52.435mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.624mil|Location2.X=1840.874mil|Location1.Y=1997.329mil|Location2.Y=2008.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.624mil|Location2.X=1840.874mil|Location1.Y=1997.329mil|Location2.Y=2008.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad C7-2(45.847mm,50.5mm) on Top Layer And Track (46.737mm,50.435mm)(46.737mm,52.435mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1745.753mil|Location2.X=1757.003mil|Location1.Y=2207.171mil|Location2.Y=2218.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1745.753mil|Location2.X=1757.003mil|Location1.Y=2207.171mil|Location2.Y=2218.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D3-A(45.085mm,56.78mm) on Top Layer And Track (44.485mm,55.68mm)(44.485mm,56.08mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.997mil|Location2.X=1804.247mil|Location1.Y=2207.171mil|Location2.Y=2218.421mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.997mil|Location2.X=1804.247mil|Location1.Y=2207.171mil|Location2.Y=2218.421mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D3-A(45.085mm,56.78mm) on Top Layer And Track (45.685mm,55.68mm)(45.685mm,56.08mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1745.753mil|Location2.X=1757.003mil|Location1.Y=2181.579mil|Location2.Y=2192.829mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1745.753mil|Location2.X=1757.003mil|Location1.Y=2181.579mil|Location2.Y=2192.829mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D3-C(45.085mm,54.98mm) on Top Layer And Track (44.485mm,55.68mm)(44.485mm,56.08mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.997mil|Location2.X=1804.247mil|Location1.Y=2181.579mil|Location2.Y=2192.829mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.997mil|Location2.X=1804.247mil|Location1.Y=2181.579mil|Location2.Y=2192.829mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D3-C(45.085mm,54.98mm) on Top Layer And Track (45.685mm,55.68mm)(45.685mm,56.08mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4511.579mil|Location2.X=4522.829mil|Location1.Y=2465.753mil|Location2.Y=2477.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4511.579mil|Location2.X=4522.829mil|Location1.Y=2465.753mil|Location2.Y=2477.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D4-A(114.162mm,63.373mm) on Top Layer And Track (114.862mm,62.773mm)(115.262mm,62.773mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4511.579mil|Location2.X=4522.829mil|Location1.Y=2512.997mil|Location2.Y=2524.247mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4511.579mil|Location2.X=4522.829mil|Location1.Y=2512.997mil|Location2.Y=2524.247mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D4-A(114.162mm,63.373mm) on Top Layer And Track (114.862mm,63.973mm)(115.262mm,63.973mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.171mil|Location2.X=4548.421mil|Location1.Y=2465.753mil|Location2.Y=2477.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.171mil|Location2.X=4548.421mil|Location1.Y=2465.753mil|Location2.Y=2477.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D4-C(115.962mm,63.373mm) on Top Layer And Track (114.862mm,62.773mm)(115.262mm,62.773mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.171mil|Location2.X=4548.421mil|Location1.Y=2512.997mil|Location2.Y=2524.247mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4537.171mil|Location2.X=4548.421mil|Location1.Y=2512.997mil|Location2.Y=2524.247mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.05mm &lt; 0.254mm) Between Pad D4-C(115.962mm,63.373mm) on Top Layer And Track (114.862mm,63.973mm)(115.262mm,63.973mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.05mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2664.008mil|Location2.X=2671.675mil|Location1.Y=3745.352mil|Location2.Y=3753.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2664.008mil|Location2.X=2671.675mil|Location1.Y=3745.352mil|Location2.Y=3753.019mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad IC2-5(67.405mm,95.758mm) on Multi-Layer And Text "Engenharia Eletrotecnica e de Computadores" (106.751mm,94.869mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2020.716mil|Location2.X=2033.418mil|Location1.Y=5042.887mil|Location2.Y=5054.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2020.716mil|Location2.X=2033.418mil|Location1.Y=5042.887mil|Location2.Y=5054.137mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad J1-1(51.054mm,127.508mm) on Multi-Layer And Track (51.562mm,128.397mm)(51.562mm,129.095mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2004.375mil|Location2.X=2015.625mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2004.375mil|Location2.X=2015.625mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J1-2(51.054mm,124.968mm) on Multi-Layer And Track (51.054mm,118.745mm)(51.054mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.525mil|Location2.X=1944.775mil|Location1.Y=5024.947mil|Location2.Y=5038.202mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.525mil|Location2.X=1944.775mil|Location1.Y=5024.947mil|Location2.Y=5038.202mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.068mm &lt; 0.254mm) Between Pad J1-3(48.514mm,127.508mm) on Multi-Layer And Track (49.403mm,127.889mm)(50.101mm,128.587mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.068mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1904.375mil|Location2.X=1915.625mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1904.375mil|Location2.X=1915.625mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J1-4(48.514mm,124.968mm) on Multi-Layer And Track (48.514mm,119.507mm)(48.514mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.855mil|Location2.X=1513.105mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.855mil|Location2.X=1513.105mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad J2-1(38.29mm,127.508mm) on Multi-Layer And Track (38.29mm,128.587mm)(38.29mm,129.985mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.855mil|Location2.X=1513.105mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.855mil|Location2.X=1513.105mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J2-2(38.29mm,124.968mm) on Multi-Layer And Track (38.29mm,118.745mm)(38.29mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1367.901mil|Location2.X=1379.151mil|Location1.Y=5014.375mil|Location2.Y=5025.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1367.901mil|Location2.X=1379.151mil|Location1.Y=5014.375mil|Location2.Y=5025.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad J2-3(35.75mm,127.508mm) on Multi-Layer And Track (32.131mm,127.508mm)(34.671mm,127.508mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1401.855mil|Location2.X=1413.105mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1401.855mil|Location2.X=1413.105mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J2-4(35.75mm,124.968mm) on Multi-Layer And Track (35.75mm,120.904mm)(35.75mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.335mil|Location2.X=1770.585mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.335mil|Location2.X=1770.585mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad J3-1(44.83mm,127.508mm) on Multi-Layer And Track (44.83mm,128.587mm)(44.83mm,131.318mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.335mil|Location2.X=1770.585mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1759.335mil|Location2.X=1770.585mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J3-2(44.83mm,124.968mm) on Multi-Layer And Track (44.83mm,119.507mm)(44.83mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1659.335mil|Location2.X=1670.585mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1659.335mil|Location2.X=1670.585mil|Location1.Y=5048.329mil|Location2.Y=5059.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad J3-3(42.29mm,127.508mm) on Multi-Layer And Track (42.29mm,128.587mm)(42.29mm,129.286mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1659.335mil|Location2.X=1670.585mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1659.335mil|Location2.X=1670.585mil|Location1.Y=4881.661mil|Location2.Y=4892.911mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad J3-4(42.29mm,124.968mm) on Multi-Layer And Track (42.29mm,120.904mm)(42.29mm,123.952mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.765mil|Location2.X=3321.431mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.765mil|Location2.X=3321.431mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L1-1(84.234mm,79.883mm) on Multi-Layer And Track (84.267mm,70.137mm)(84.267mm,89.629mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.467mil|Location2.X=3715.133mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.467mil|Location2.X=3715.133mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L1-2(94.234mm,79.883mm) on Multi-Layer And Track (94.267mm,70.137mm)(94.267mm,89.629mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.765mil|Location2.X=3321.431mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.765mil|Location2.X=3321.431mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L2-1(84.234mm,100.965mm) on Multi-Layer And Track (84.267mm,91.219mm)(84.267mm,110.711mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.467mil|Location2.X=3715.133mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3707.467mil|Location2.X=3715.133mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L2-2(94.234mm,100.965mm) on Multi-Layer And Track (94.267mm,91.219mm)(94.267mm,110.711mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.932mil|Location2.X=3834.598mil|Location1.Y=4462.467mil|Location2.Y=4470.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.932mil|Location2.X=3834.598mil|Location1.Y=4462.467mil|Location2.Y=4470.133mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L3-1(98.552mm,113.411mm) on Multi-Layer And Track (88.806mm,113.444mm)(108.298mm,113.444mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.932mil|Location2.X=3834.598mil|Location1.Y=4856.167mil|Location2.Y=4863.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.932mil|Location2.X=3834.598mil|Location1.Y=4856.167mil|Location2.Y=4863.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L3-2(98.552mm,123.411mm) on Multi-Layer And Track (88.806mm,123.444mm)(108.298mm,123.444mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.765mil|Location2.X=4026.431mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.765mil|Location2.X=4026.431mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L4-1(102.141mm,100.965mm) on Multi-Layer And Track (102.174mm,91.219mm)(102.174mm,110.711mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4412.467mil|Location2.X=4420.133mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4412.467mil|Location2.X=4420.133mil|Location1.Y=3947.612mil|Location2.Y=3955.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L4-2(112.141mm,100.965mm) on Multi-Layer And Track (112.174mm,91.219mm)(112.174mm,110.711mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.765mil|Location2.X=4026.431mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.765mil|Location2.X=4026.431mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L5-1(102.141mm,79.883mm) on Multi-Layer And Track (102.174mm,70.137mm)(102.174mm,89.629mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4412.467mil|Location2.X=4420.133mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4412.467mil|Location2.X=4420.133mil|Location1.Y=3117.612mil|Location2.Y=3125.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L5-2(112.141mm,79.883mm) on Multi-Layer And Track (112.174mm,70.137mm)(112.174mm,89.629mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4502.329mil|Location2.X=4513.579mil|Location1.Y=2544.126mil|Location2.Y=2555.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4502.329mil|Location2.X=4513.579mil|Location1.Y=2544.126mil|Location2.Y=2555.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R10-1(114.127mm,65.532mm) on Top Layer And Track (114.062mm,64.642mm)(116.062mm,64.642mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4502.329mil|Location2.X=4513.579mil|Location1.Y=2604.624mil|Location2.Y=2615.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4502.329mil|Location2.X=4513.579mil|Location1.Y=2604.624mil|Location2.Y=2615.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R10-1(114.127mm,65.532mm) on Top Layer And Track (114.062mm,66.422mm)(116.062mm,66.422mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4546.423mil|Location2.X=4557.673mil|Location1.Y=2544.126mil|Location2.Y=2555.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4546.423mil|Location2.X=4557.673mil|Location1.Y=2544.126mil|Location2.Y=2555.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R10-2(115.997mm,65.532mm) on Top Layer And Track (114.062mm,64.642mm)(116.062mm,64.642mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4546.423mil|Location2.X=4557.673mil|Location1.Y=2604.624mil|Location2.Y=2615.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4546.423mil|Location2.X=4557.673mil|Location1.Y=2604.624mil|Location2.Y=2615.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R10-2(115.997mm,65.532mm) on Top Layer And Track (114.062mm,66.422mm)(116.062mm,66.422mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.126mil|Location2.X=1125.376mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.126mil|Location2.X=1125.376mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R1-1(29.21mm,96.093mm) on Top Layer And Track (28.32mm,96.028mm)(28.32mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.624mil|Location2.X=1185.874mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.624mil|Location2.X=1185.874mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R1-1(29.21mm,96.093mm) on Top Layer And Track (30.1mm,96.028mm)(30.1mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.126mil|Location2.X=1125.376mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.126mil|Location2.X=1125.376mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R1-2(29.21mm,97.963mm) on Top Layer And Track (28.32mm,96.028mm)(28.32mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.624mil|Location2.X=1185.874mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1174.624mil|Location2.X=1185.874mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R1-2(29.21mm,97.963mm) on Top Layer And Track (30.1mm,96.028mm)(30.1mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2204.126mil|Location2.X=2215.376mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2204.126mil|Location2.X=2215.376mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R2-1(56.896mm,96.093mm) on Top Layer And Track (56.006mm,96.028mm)(56.006mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2264.624mil|Location2.X=2275.874mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2264.624mil|Location2.X=2275.874mil|Location1.Y=3792.329mil|Location2.Y=3803.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R2-1(56.896mm,96.093mm) on Top Layer And Track (57.786mm,96.028mm)(57.786mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2204.126mil|Location2.X=2215.376mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2204.126mil|Location2.X=2215.376mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R2-2(56.896mm,97.963mm) on Top Layer And Track (56.006mm,96.028mm)(56.006mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2264.624mil|Location2.X=2275.874mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2264.624mil|Location2.X=2275.874mil|Location1.Y=3836.423mil|Location2.Y=3847.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R2-2(56.896mm,97.963mm) on Top Layer And Track (57.786mm,96.028mm)(57.786mm,98.028mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R3-1(41.864mm,100.33mm) on Top Layer And Track (41.799mm,101.22mm)(43.799mm,101.22mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R3-1(41.864mm,100.33mm) on Top Layer And Track (41.799mm,99.44mm)(43.799mm,99.44mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R3-2(43.734mm,100.33mm) on Top Layer And Track (41.799mm,101.22mm)(43.799mm,101.22mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R3-2(43.734mm,100.33mm) on Top Layer And Track (41.799mm,99.44mm)(43.799mm,99.44mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R4-1(41.864mm,98.298mm) on Top Layer And Track (41.799mm,97.408mm)(43.799mm,97.408mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1657.329mil|Location2.X=1668.579mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R4-1(41.864mm,98.298mm) on Top Layer And Track (41.799mm,99.188mm)(43.799mm,99.188mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R4-2(43.734mm,98.298mm) on Top Layer And Track (41.799mm,97.408mm)(43.799mm,97.408mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1701.423mil|Location2.X=1712.673mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R4-2(43.734mm,98.298mm) on Top Layer And Track (41.799mm,99.188mm)(43.799mm,99.188mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R5-1(70.566mm,100.33mm) on Top Layer And Track (70.501mm,101.22mm)(72.501mm,101.22mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R5-1(70.566mm,100.33mm) on Top Layer And Track (70.501mm,99.44mm)(72.501mm,99.44mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3974.624mil|Location2.Y=3985.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R5-2(72.436mm,100.33mm) on Top Layer And Track (70.501mm,101.22mm)(72.501mm,101.22mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3914.126mil|Location2.Y=3925.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R5-2(72.436mm,100.33mm) on Top Layer And Track (70.501mm,99.44mm)(72.501mm,99.44mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R6-1(70.566mm,98.298mm) on Top Layer And Track (70.501mm,97.408mm)(72.501mm,97.408mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.329mil|Location2.X=2798.579mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R6-1(70.566mm,98.298mm) on Top Layer And Track (70.501mm,99.188mm)(72.501mm,99.188mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3834.126mil|Location2.Y=3845.376mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R6-2(72.436mm,98.298mm) on Top Layer And Track (70.501mm,97.408mm)(72.501mm,97.408mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2831.423mil|Location2.X=2842.673mil|Location1.Y=3894.624mil|Location2.Y=3905.874mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R6-2(72.436mm,98.298mm) on Top Layer And Track (70.501mm,99.188mm)(72.501mm,99.188mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3229.611mil|Location2.Y=3240.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3229.611mil|Location2.Y=3240.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R7-1(29.718mm,82.55mm) on Top Layer And Track (28.828mm,80.615mm)(28.828mm,82.615mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3229.611mil|Location2.Y=3240.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3229.611mil|Location2.Y=3240.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R7-1(29.718mm,82.55mm) on Top Layer And Track (30.608mm,80.615mm)(30.608mm,82.615mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3185.517mil|Location2.Y=3196.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.126mil|Location2.X=1145.376mil|Location1.Y=3185.517mil|Location2.Y=3196.767mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R7-2(29.718mm,80.68mm) on Top Layer And Track (28.828mm,80.615mm)(28.828mm,82.615mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3185.517mil|Location2.Y=3196.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1194.624mil|Location2.X=1205.874mil|Location1.Y=3185.517mil|Location2.Y=3196.767mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R7-2(29.718mm,80.68mm) on Top Layer And Track (30.608mm,80.615mm)(30.608mm,82.615mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3236.423mil|Location2.Y=3247.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3236.423mil|Location2.Y=3247.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R8-1(64.262mm,82.723mm) on Top Layer And Track (63.372mm,80.788mm)(63.372mm,82.788mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3236.423mil|Location2.Y=3247.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3236.423mil|Location2.Y=3247.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R8-1(64.262mm,82.723mm) on Top Layer And Track (65.152mm,80.788mm)(65.152mm,82.788mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3192.329mil|Location2.Y=3203.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.126mil|Location2.X=2505.376mil|Location1.Y=3192.329mil|Location2.Y=3203.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R8-2(64.262mm,80.853mm) on Top Layer And Track (63.372mm,80.788mm)(63.372mm,82.788mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3192.329mil|Location2.Y=3203.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.624mil|Location2.X=2565.874mil|Location1.Y=3192.329mil|Location2.Y=3203.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R8-2(64.262mm,80.853mm) on Top Layer And Track (65.152mm,80.788mm)(65.152mm,82.788mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1649.126mil|Location2.X=1660.376mil|Location1.Y=2216.423mil|Location2.Y=2227.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1649.126mil|Location2.X=1660.376mil|Location1.Y=2216.423mil|Location2.Y=2227.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R9-1(42.799mm,56.815mm) on Top Layer And Track (41.909mm,54.88mm)(41.909mm,56.88mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1709.624mil|Location2.X=1720.874mil|Location1.Y=2216.423mil|Location2.Y=2227.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1709.624mil|Location2.X=1720.874mil|Location1.Y=2216.423mil|Location2.Y=2227.673mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R9-1(42.799mm,56.815mm) on Top Layer And Track (43.689mm,54.88mm)(43.689mm,56.88mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1649.126mil|Location2.X=1660.376mil|Location1.Y=2172.329mil|Location2.Y=2183.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1649.126mil|Location2.X=1660.376mil|Location1.Y=2172.329mil|Location2.Y=2183.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R9-2(42.799mm,54.945mm) on Top Layer And Track (41.909mm,54.88mm)(41.909mm,56.88mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1709.624mil|Location2.X=1720.874mil|Location1.Y=2172.329mil|Location2.Y=2183.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\5_GitSTUFF\0002_IPL\Battery BiDirectional Converter\BiDirectional Charger - DC-DC (Hardware)\DC-DC PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1709.624mil|Location2.X=1720.874mil|Location1.Y=2172.329mil|Location2.Y=2183.579mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.116mm &lt; 0.254mm) Between Pad R9-2(42.799mm,54.945mm) on Top Layer And Track (43.689mm,54.88mm)(43.689mm,56.88mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.116mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
