@@ -1,0 +1,33 @@
+Change Component Footprint: Designator=D1 Old Footprint=DIOAD4425W132L885D885 New Footprint=Common Trhough Hole
+Change Component Footprint: Designator=D2 Old Footprint=DIOAD4425W132L885D885 New Footprint=Common Trhough Hole
+Change component parameters: Designator = "D1" ("D1"); Footprint = "DIOAD4425W132L885D885"; UniqueID = "\INLDEGUU" ("\INLDEGUU")
+Change component parameters (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/1N5817-T/Diodes+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "1N5817-T"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "DO-41 Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/1N5817-T/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/1N5817-T/Diodes+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2" ("D2"); Footprint = "DIOAD4425W132L885D885"; UniqueID = "\JPNVRYVB" ("\JPNVRYVB")
+Change component parameters (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/1N5817-T/Diodes+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "1N5817-T"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "DO-41 Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/1N5817-T/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/1N5817-T/Diodes+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole

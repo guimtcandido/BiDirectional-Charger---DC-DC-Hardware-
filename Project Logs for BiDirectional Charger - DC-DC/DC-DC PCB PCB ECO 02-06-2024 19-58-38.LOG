@@ -1,0 +1,72 @@
+Removed Pin From Net: NetName=GND Pin=C5-N
+Removed Pin From Net: NetName=+24 Pin=C5-P
+Removed Pin From Net: NetName=GND Pin=C6-N
+Removed Pin From Net: NetName=+24 Pin=C6-P
+Removed Pin From Net: NetName=GND Pin=C9-N
+Removed Pin From Net: NetName=NetC9_P Pin=C9-P
+Removed Pin From Net: NetName=GND Pin=C10-N
+Removed Pin From Net: NetName=NetC9_P Pin=C10-P
+Change Component Footprint: Designator=C5 Old Footprint=CAP_10uF New Footprint=CAPPRD500W62D1300H2150
+Change Component Footprint: Designator=C6 Old Footprint=CAP_10uF New Footprint=CAPPRD500W62D1300H2150
+Change Component Footprint: Designator=C9 Old Footprint=CAP_10uF New Footprint=CAPPRD500W62D1300H2150
+Change Component Footprint: Designator=C10 Old Footprint=CAP_10uF New Footprint=CAPPRD500W62D1300H2150
+Change Component Comment : Designator=C5 Old Comment=10uF Cap New Comment=2200uF
+Change Component Comment : Designator=C6 Old Comment=10uF Cap New Comment=2200uF
+Change Component Comment : Designator=C9 Old Comment=10uF Cap New Comment=2200uF
+Change Component Comment : Designator=C10 Old Comment=10uF Cap New Comment=2200uF
+Change component parameters: Designator = "C5" ("C5"); Footprint = "CAP_10uF"; UniqueID = "\BWSNJSIX" ("\BWSNJSIX")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://ms.componentsearchengine.com/Datasheets/2/860020578018.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "21.5mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "710-860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/860020578018?qs=0KOYDY2FL28EAkbJaifUfg%3D%3D"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C6" ("C6"); Footprint = "CAP_10uF"; UniqueID = "\AIYZLIPZ" ("\AIYZLIPZ")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://ms.componentsearchengine.com/Datasheets/2/860020578018.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "21.5mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "710-860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/860020578018?qs=0KOYDY2FL28EAkbJaifUfg%3D%3D"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C9" ("C9"); Footprint = "CAP_10uF"; UniqueID = "\OHKLYYFR" ("\OHKLYYFR")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://ms.componentsearchengine.com/Datasheets/2/860020578018.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "21.5mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "710-860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/860020578018?qs=0KOYDY2FL28EAkbJaifUfg%3D%3D"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C10" ("C10"); Footprint = "CAP_10uF"; UniqueID = "\ITNWWKTE" ("\ITNWWKTE")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://ms.componentsearchengine.com/Datasheets/2/860020578018.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "21.5mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "710-860020578018"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/860020578018?qs=0KOYDY2FL28EAkbJaifUfg%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+24 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=+24 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=NetC9_P Pin=C9-1
+Added Pin To Net: NetName=GND Pin=C9-2
+Added Pin To Net: NetName=NetC9_P Pin=C10-1
+Added Pin To Net: NetName=GND Pin=C10-2
+Change Net Name : Old Net Name=NetC9_P New Net Name=NetC9_1
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
+Added Member To Class: ClassName=Conectors Member=Component  M3 Mounting Hole
